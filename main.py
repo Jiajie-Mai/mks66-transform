@@ -8,4 +8,7 @@ color = [ 0, 255, 0 ]
 edges = []
 transform = new_matrix()
 
+transform = make_translate(1,1,1)
+print(transform)
+
 parse_file( 'script', edges, transform, screen, color )

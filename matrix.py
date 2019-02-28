@@ -10,7 +10,20 @@ z0  z1  ... zn
 import math
 
 def make_translate( x, y, z ):
-    pass
+    output = new_matrix()
+
+    for r in range( len ( output[0] ) ):
+        for c in range( len ( output ) ):
+            if ( r == c ):
+                output[c][r] = 1
+            elif ( r == 3 ):
+                if ( c == 0 ):
+                    output[c][r] = x
+                if ( c == 1 ):
+                    output[c][r] = y
+                else:
+                output[c][r] = 0
+    return output
 
 def make_scale( x, y, z ):
     pass
