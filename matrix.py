@@ -16,26 +16,68 @@ def make_translate( x, y, z ):
         for c in range( len ( output ) ):
             if ( r == c ):
                 output[c][r] = 1
-            elif ( r == 3 ):
-                if ( c == 0 ):
-                    output[c][r] = x
-                if ( c == 1 ):
-                    output[c][r] = y
-                else:
+            else:
                 output[c][r] = 0
+
+    output[3] = [x,y,z,1]
+
     return output
 
 def make_scale( x, y, z ):
-    pass
+    output = new_matrix()
+
+    for r in range( len ( output[0] ) ):
+        for c in range( len ( output ) ):
+            if ( r == c ):
+                if ( r == 0 ):
+                    output[c][r] = x
+                elif ( r == 1 ):
+                    output[c][r] = y
+                elif ( r == 2 ):
+                    output[c][r] = z
+                else:
+                    output[c][r] = 1
+            else:
+                output[c][r] = 0
+
+    return output
 
 def make_rotX( theta ):
-    pass
+    output = new_matrix()
+
+    output[0][0] = math.cos( theta )
+    output[0][1] = math.sin( theta ) * -1
+    output[1][0] = math.sin( theta )
+    output[1][1] = math.cos( theta )
+    output[2][2] = 1
+    output[3][3] = 1
+
+    return output
+
 
 def make_rotY( theta ):
-    pass
+    output = new_matrix()
+
+    output[1][1] = math.cos( theta )
+    output[1][2] = math.sin( theta ) * -1
+    output[2][1] = math.sin( theta )
+    output[2][2] = math.cos( theta )
+    output[0][0] = 1
+    output[3][3] = 1
+
+    return output
 
 def make_rotZ( theta ):
-    pass
+    output = new_matrix()
+
+    output[0][0] = math.cos( theta )
+    output[2][0] = math.sin( theta )
+    output[0][2] = math.sin( theta ) * -1
+    output[2][2] = math.cos( theta )
+    output[1][1] = 1
+    output[3][3] = 1
+
+    return output
 
 #print the matrix such that it looks like
 #the template in the top comment
@@ -67,10 +109,10 @@ def matrix_mult( m1, m2 ):
         tmp = row[:]
 
         for r in range(4):
-            m2[point][r] = (m1[0][r] * tmp[0] +
-                            m1[1][r] * tmp[1] +
-                            m1[2][r] * tmp[2] +
-                            m1[3][r] * tmp[3])
+            m2[point][r] = (math.floor(m1[0][r] * tmp[0]) +
+                            math.floor(m1[1][r] * tmp[1]) +
+                            math.floor(m1[2][r] * tmp[2]) +
+                            math.floor(m1[3][r] * tmp[3]))
         point+= 1
 
 
