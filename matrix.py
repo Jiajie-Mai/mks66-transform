@@ -45,19 +45,6 @@ def make_scale( x, y, z ):
 def make_rotX( theta ):
     output = new_matrix()
 
-    output[0][0] = math.cos( theta )
-    output[0][1] = math.sin( theta ) * -1
-    output[1][0] = math.sin( theta )
-    output[1][1] = math.cos( theta )
-    output[2][2] = 1
-    output[3][3] = 1
-
-    return output
-
-
-def make_rotY( theta ):
-    output = new_matrix()
-
     output[1][1] = math.cos( theta )
     output[1][2] = math.sin( theta ) * -1
     output[2][1] = math.sin( theta )
@@ -67,14 +54,29 @@ def make_rotY( theta ):
 
     return output
 
-def make_rotZ( theta ):
+
+def make_rotY( theta ):
+
     output = new_matrix()
 
     output[0][0] = math.cos( theta )
-    output[2][0] = math.sin( theta )
-    output[0][2] = math.sin( theta ) * -1
+    output[2][0] = math.sin( theta ) * -1
+    output[0][2] = math.sin( theta )
     output[2][2] = math.cos( theta )
     output[1][1] = 1
+    output[3][3] = 1
+
+    return output
+
+def make_rotZ( theta ):
+
+    output = new_matrix()
+
+    output[0][0] = math.cos( theta )
+    output[0][1] = math.sin( theta ) * -1
+    output[1][0] = math.sin( theta )
+    output[1][1] = math.cos( theta )
+    output[2][2] = 1
     output[3][3] = 1
 
     return output
@@ -87,7 +89,7 @@ def print_matrix( matrix ):
         for c in range( len(matrix) ):
             s+= str(matrix[c][r]) + ' '
         s+= '\n'
-    print s
+    print (s)
 
 #turn the paramter matrix into an identity matrix
 #you may assume matrix is square

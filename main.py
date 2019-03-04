@@ -4,19 +4,26 @@ from parser import *
 from matrix import *
 
 screen = new_screen()
-color = [ 0, 255, 0 ]
+color = [ 0, 1, 0 ]
 edges = []
-transform = new_matrix()
 matrix = new_matrix()
+transform = new_matrix()
 
-transform = make_rotZ(30)
-print_matrix(transform)
+#parse_file( 'script', edges, transform, screen, color )
 
-add_edge(matrix,1,2,3,4,5,6)
-add_edge(matrix,7,8,9,10,11,12)
-print_matrix(matrix)
+i = 0
+while i < 500:
+    add_edge( matrix, 0, 0 + i, 0, 250, 250 + i, 0 )
+    add_edge( matrix, 0, 0 + i, 0, 500, 0 + i, 0 )
+    add_edge( matrix, 250, 250 + i, 0, 500, 0 + i, 0 )
+    color[1] = 500 - i 
+    draw_lines( matrix, screen, color )
+    transform = make_scale( 1, 2, 1 )
+    matrix_mult( transform, matrix )
+    i += 100
 
-matrix_mult(transform,matrix)
-print_matrix(matrix)
 
-parse_file( 'script', edges, transform, screen, color )
+save_extension(screen, 'img.png')
+display(screen)
+
+

@@ -4,7 +4,7 @@ from matrix import *
 
 def draw_lines( matrix, screen, color ):
     if len(matrix) < 2:
-        print 'Need at least 2 points to draw'
+        print ('Need at least 2 points to draw')
         return
 
     point = 0
@@ -32,6 +32,11 @@ def add_point( matrix, x, y, z=0 ):
 
 
 def draw_line( x0, y0, x1, y1, screen, color ):
+
+    x0 = int( x0 )
+    y0 = int( y0 )
+    x1 = int( x1 )
+    y1 = int( y1 )
 
     #swap points if going right -> left
     if x0 > x1:
